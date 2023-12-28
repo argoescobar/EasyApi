@@ -13,9 +13,14 @@ const api = new EasyApi({
     key: fs.readFileSync('private.key', 'utf8'),
     cert: fs.readFileSync('certificate.crt', 'utf8'),
   },
+  corsOptions: {
+    origin: 'http://localhost:3000',
+  },
+ 
+  
 });
 //crete a middleware function
-const middleware:Middleware = (req, res, next) => {
+const middleware:Middleware = async (req, res, next) => {
   console.log('Middleware function called');
   next();
 };
@@ -23,11 +28,11 @@ const middleware:Middleware = (req, res, next) => {
 // ADD ENDPOINTS TO THE API 
 // addEndpoint takes three parameters: endpoint, callback
 
-api.get('/test', (req, res) => {
+api.get('/test',async (req:any, res:any) => {
   res.send('hello world');
 });
 // 
-api.get('/test2', (req, res) => {
+api.get('/test2',async (req:any, res:any) => {
   res.send('hello world 2');
 }, middleware);
 
