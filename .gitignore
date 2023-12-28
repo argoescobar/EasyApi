@@ -1,4 +1,4 @@
-node_module/
+node_modules/
 src/class/callClass.js
 src/class/callClass.ts
 *.key
